@@ -639,11 +639,22 @@
                      break;
                   }
 
+                    NSString* device = @"";
+                    if (@available(iOS 11.0, *)) {
+                        device = [[sample sourceRevision] productType];
+                    } else {
+                        device = [[sample device] name];
+                        if (!device) {
+                            device = @"iPhone";
+                        }
+                    }
+
                     NSDictionary *elem = @{
                             @"id" : [[sample UUID] UUIDString],
                             @"value" : valueString,
                             @"startDate" : startDateString,
                             @"endDate" : endDateString,
+                            @"device" : device,
                             @"sourceName" : [[[sample sourceRevision] source] name],
                             @"sourceId" : [[[sample sourceRevision] source] bundleIdentifier],
                     };
