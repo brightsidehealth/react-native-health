@@ -649,6 +649,7 @@
                         }
                     }
 
+                    NSTimeZone *timeZone = sample.metadata[HKMetadataKeyTimeZone];
                     NSDictionary *elem = @{
                             @"id" : [[sample UUID] UUIDString],
                             @"value" : valueString,
@@ -657,6 +658,7 @@
                             @"device" : device,
                             @"sourceName" : [[[sample sourceRevision] source] name],
                             @"sourceId" : [[[sample sourceRevision] source] bundleIdentifier],
+                            @"timeZone": timeZone ?: @"",
                     };
 
                     [data addObject:elem];
